@@ -1,2 +1,4 @@
 # blog-laravel
-This project uses Laravel 5.6
+
+I learned Laravel and this is the result.
+This project uses Laravel 5.6. There are some plugins I used here. Its makes it easier to develop project.
