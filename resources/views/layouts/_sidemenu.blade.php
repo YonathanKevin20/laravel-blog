@@ -2,6 +2,16 @@
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
             @if(Auth::user()->role == 'leader')
+            <li class="sidebar-search">
+                <form action="{{ route('post.search') }}" method="GET">
+                    <div class="input-group custom-search-form">
+                        <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ isset($_GET['search']) ? $_GET['search'] : '' }}">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>
+            </li>
             <li>
                 <a href="{{ route('home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>

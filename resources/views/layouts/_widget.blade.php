@@ -3,7 +3,7 @@
     <div class="card my-4">
         <h5 class="card-header">Search</h5>
         <div class="card-body">
-            <form action="{{ url()->current() }}" method="GET">
+            <form action="{{ route('post.paginate') }}" method="GET">
                 <div class="input-group">
                     <input type="text" name="search" class="form-control" placeholder="Search for..." value="{{ isset($_GET['search']) ? $_GET['search'] : '' }}">
                     <span class="input-group-btn">

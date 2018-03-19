@@ -1,17 +1,22 @@
 <?php
 
-function role($role_id) {
-	$role = ['leader', 'editor', 'chief'];
-	foreach ($role as $value) {
-		if(Auth::check()) {
-			if($role_id == $value) {
-				return true;
-			}
-		}
-		else {
-			return false;
-		}
+function post_status($status) {
+	switch ($status) {
+		case '3':
+			return '<span class="label label-success">Published</span>';
+			break;
+		
+		case '2':
+			return '<span class="label label-danger">Revising</span>';
+			break;
 
+		case '1':
+			return '<span class="label label-info">Waiting</span>';
+			break;
+
+		default:
+			return '<span class="label label-warning">Pending</span>';
+			break;
 	}
 }
 
