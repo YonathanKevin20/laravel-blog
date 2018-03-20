@@ -263,15 +263,15 @@ class PostController extends Controller
         $id = Auth::user()->id;
         switch (Auth::user()->role) {
             case 'leader':
-                $posts = Post::with('category')->with('user')->select('posts.*');
+                $posts = Post::with('category')->with('user')->select('posts.*')->latest();
                 break;
                 
             case 'chief':
-                $posts = Post::with('category')->with('user')->select('posts.*');
+                $posts = Post::with('category')->with('user')->select('posts.*')->latest();
                 break;
 
             case 'editor':
-                $posts = Post::with('category')->select('posts.*')->where('posts.user_id',$id);
+                $posts = Post::with('category')->select('posts.*')->where('posts.user_id',$id)->latest();
                 break;
         }
 

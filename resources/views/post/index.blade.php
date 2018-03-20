@@ -8,7 +8,10 @@
 <div class="row">
 	<div class="col-md-12">
 		<a href="{{ route('post.create') }}" class="btn btn-md btn-primary">Create</a>
-		<a href="{{ route('export.excel') }}" class="btn btn-md btn-default pull-right">Excel</a>
+		<div class="pull-right">
+			<a href="{{ route('export.excel') }}" class="btn btn-md btn-default">Excel</a>
+			<a href="{{ route('export.pdf') }}" class="btn btn-md btn-default">PDF</a>
+		</div>
 		<br><br>
 		<div class="panel panel-default">
 			<div class="panel-heading">

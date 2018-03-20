@@ -10,6 +10,8 @@
 
     <title>{{ config('app.name','blog') }} | @yield('title')</title>
 
+    <link rel="shorcut icon" href="{{ asset('icon.ico') }}">
+
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('css/bootstrap3.min.css') }}" rel="stylesheet">
 

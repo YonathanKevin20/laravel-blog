@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Excel;
+use PDF;
 use App\Models\Post;
 
 class ExportController extends Controller
 {
-    public function post(Request $request)
+    public function post_excel(Request $request)
     {
     	if(isset($request->search)) {
             $posts = Post::where(function($query) use($request) {
@@ -26,7 +27,7 @@ class ExportController extends Controller
                 ->get();
     	}
     	else {
-    		$posts = Post::all();
+    		$posts = Post::latest()->get();
     	}
 
 		$i = 1;
@@ -50,5 +51,31 @@ class ExportController extends Controller
 		    	$sheet->fromArray($data,null,'A2',false,false);
 		    });
 		})->export('xlsx');
+    }
+
+    public function post_pdf(Request $request)
+    {
+        if(isset($request->search)) {
+            $posts = Post::where(function($query) use($request) {
+                $query->where('title','like',"%$request->search%")
+                    ->orWhere('slug','like',"%$request->search%")
+                    ->orWhere('content','like',"%$request->search%")
+                    ->orWhereHas('category', function($query) use($request) {
+                        $query->where('name','like',"%$request->search%");
+                    })
+                    ->orWhereHas('user', function($query) use($request) {
+                        $query->where('name','like',"%$request->search%");
+                    });
+                })
+                ->latest()
+                ->get();
+        }
+        else {
+            $posts = Post::latest()->get();
+        }
+
+        //return view('export.postpdf',compact('posts'));
+        $pdf = PDF::loadView('export.postpdf',compact('posts'));
+        return $pdf->stream('laporan.pdf');
     }
 }

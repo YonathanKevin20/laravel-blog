@@ -46,5 +46,6 @@ Route::group(['prefix'=>'back','middleware'=>'auth'],function() {
 	Route::get('getcategory','CategoryController@getcategory')->name('data.category');
 	Route::get('getcomment','CommentController@getcomment')->name('data.comment');
 
-	Route::get('export','ExportController@post')->name('export.excel');
+	Route::get('export/excel','ExportController@post_excel')->name('export.excel');
+	Route::get('export/pdf','ExportController@post_pdf')->name('export.pdf');
 });
