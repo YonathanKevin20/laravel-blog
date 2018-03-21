@@ -78,4 +78,47 @@ class ExportController extends Controller
         $pdf = PDF::loadView('export.postpdf',compact('posts'));
         return $pdf->stream('laporan.pdf');
     }
+
+    public function post_word(Request $request)
+    {
+        if(isset($request->search)) {
+            $posts = Post::where(function($query) use($request) {
+                $query->where('title','like',"%$request->search%")
+                    ->orWhere('slug','like',"%$request->search%")
+                    ->orWhere('content','like',"%$request->search%")
+                    ->orWhereHas('category', function($query) use($request) {
+                        $query->where('name','like',"%$request->search%");
+                    })
+                    ->orWhereHas('user', function($query) use($request) {
+                        $query->where('name','like',"%$request->search%");
+                    });
+                })
+                ->latest()
+                ->get();
+        }
+        else {
+            $posts = Post::latest()->get();
+        }
+
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $sectionStyle = array(
+            'orientation'=>'portrait');
+        $section = $phpWord->addSection($sectionStyle);
+        foreach($posts as $p) {
+            $section->addText($p->title);
+            $section->addText('by '.$p->user->name);
+            $section->addText($p->created_at->format('M d, Y \a\t h:i A'));
+            $section->addText('Category: '.$p->category->name);
+            //$section->addImage(asset('storage',substr($p->image,6)),array('width'=>400));
+            $section->addText(strip_tags($p->content));
+            $section->addPageBreak();
+        }
+        $footer = $section->addFooter();
+        $footer->addPreserveText('Page {PAGE} of {NUMPAGES}',null,array('align'=>'center'));
+        $phpWord->save('laporan.docx', 'Word2007', true);
+        /*try {
+            $objWriter->save(storage_path('laporan.docx'));
+        } catch (Exception $e) {}
+        return response()->download(storage_path('laporan.docx'));*/
+    }
 }

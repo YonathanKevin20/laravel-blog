@@ -24,7 +24,7 @@ Route::get('category/{id}','CategoryController@percategory')->name('category.per
 Auth::routes();
 
 Route::group(['prefix'=>'back','middleware'=>'auth'],function() {
-	Route::get('/','PostController@search')->name('post.search');
+	Route::get('/','PostController@search')->name('post.search')->middleware('leader');
 
 	Route::get('dashboard', 'HomeController@index')->name('home');
 
@@ -48,4 +48,5 @@ Route::group(['prefix'=>'back','middleware'=>'auth'],function() {
 
 	Route::get('export/excel','ExportController@post_excel')->name('export.excel');
 	Route::get('export/pdf','ExportController@post_pdf')->name('export.pdf');
+	Route::get('export/word','ExportController@post_word')->name('export.word');
 });

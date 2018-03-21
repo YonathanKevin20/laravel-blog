@@ -91,7 +91,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('name','ASC')->get();
 
         return view('post.create',compact('categories'));
     }
@@ -148,7 +148,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('name','ASC')->get();
         $post = Post::findOrFail($id);
 
         return view('post.edit',compact('categories','post'));

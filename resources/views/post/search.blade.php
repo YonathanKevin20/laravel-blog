@@ -10,6 +10,7 @@
 		<div class="text-right">
 			<a href="{{ route('export.excel','search='.$_GET['search']) }}" class="btn btn-md btn-default">Excel</a>
 			<a href="{{ route('export.pdf','search='.$_GET['search']) }}" class="btn btn-md btn-default">PDF</a>
+			<a href="{{ route('export.word','search='.$_GET['search']) }}" class="btn btn-md btn-default">Word</a>
 		</div>
 		<br>
 		<div class="panel panel-default">

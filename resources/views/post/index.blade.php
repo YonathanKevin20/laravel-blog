@@ -11,6 +11,7 @@
 		<div class="pull-right">
 			<a href="{{ route('export.excel') }}" class="btn btn-md btn-default">Excel</a>
 			<a href="{{ route('export.pdf') }}" class="btn btn-md btn-default">PDF</a>
+			<a href="{{ route('export.word') }}" class="btn btn-md btn-default">Word</a>
 		</div>
 		<br><br>
 		<div class="panel panel-default">
