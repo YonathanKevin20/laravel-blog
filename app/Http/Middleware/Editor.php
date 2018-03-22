@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Auth;
 
 class Editor
 {
@@ -14,9 +13,9 @@ class Editor
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $condition)
     {
-        if(Auth::check() && Auth::user()->role == 'editor') {
+        if($request->user()->role != 'editor' && $condition == 'not') {
             return $next($request);
         }
         return redirect()->route('home');

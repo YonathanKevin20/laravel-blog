@@ -216,6 +216,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
+        Storage::delete($post->image);
         $post->delete();
 
         return redirect()->route('post.index');
@@ -262,16 +263,12 @@ class PostController extends Controller
     {
         $id = Auth::user()->id;
         switch (Auth::user()->role) {
-            case 'leader':
-                $posts = Post::with('category')->with('user')->select('posts.*')->latest();
-                break;
-                
-            case 'chief':
-                $posts = Post::with('category')->with('user')->select('posts.*')->latest();
-                break;
-
             case 'editor':
                 $posts = Post::with('category')->select('posts.*')->where('posts.user_id',$id)->latest();
+                break;
+
+            default:
+                $posts = Post::with('category')->with('user')->select('posts.*')->latest();
                 break;
         }
 

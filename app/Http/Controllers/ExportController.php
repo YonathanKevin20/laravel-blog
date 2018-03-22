@@ -109,16 +109,12 @@ class ExportController extends Controller
             $section->addText('by '.$p->user->name);
             $section->addText($p->created_at->format('M d, Y \a\t h:i A'));
             $section->addText('Category: '.$p->category->name);
-            //$section->addImage(asset('storage',substr($p->image,6)),array('width'=>400));
+            //$section->addImage(asset('storage',substr($p->image,6)),array('width'=>100));
             $section->addText(strip_tags($p->content));
             $section->addPageBreak();
         }
         $footer = $section->addFooter();
         $footer->addPreserveText('Page {PAGE} of {NUMPAGES}',null,array('align'=>'center'));
         $phpWord->save('laporan.docx', 'Word2007', true);
-        /*try {
-            $objWriter->save(storage_path('laporan.docx'));
-        } catch (Exception $e) {}
-        return response()->download(storage_path('laporan.docx'));*/
     }
 }

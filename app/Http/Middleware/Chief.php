@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Auth;
 
 class Chief
 {
@@ -16,7 +15,7 @@ class Chief
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->role == 'chief') {
+        if($request->user()->role == 'chief') {
             return $next($request);
         }
         return redirect()->route('home');

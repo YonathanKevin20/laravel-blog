@@ -36,7 +36,7 @@ Route::group(['prefix'=>'back','middleware'=>'auth'],function() {
 	Route::patch('revision/{id}','PostController@revision')->name('post.revision')->middleware('chief');
 	Route::patch('approval/{id}','PostController@approval')->name('post.approval')->middleware('leader');
 
-	Route::resource('category','CategoryController')->middleware('leader','chief');
+	Route::resource('category','CategoryController')->middleware('editor:not');
 	Route::resource('comment','CommentController');
 
 	Route::get('user/{id}/edit','UserController@edit')->name('user.edit');

@@ -5,45 +5,127 @@
 @endsection
 
 @section('content')
-<div class="row">
-	<div class="col-md-3 col-md-offset-6">
-	    @php
-	    $month[''] = 'Month';
-	    $month[1] = 'January';
-	    $month[2] = 'February';
-	    $month[3] = 'March';
-	    $month[4] = 'April';
-	    $month[5] = 'May';
-	    $month[6] = 'June';
-	    $month[7] = 'July';
-	    $month[8] = 'August';
-	    $month[9] = 'September';
-	    $month[10] = 'October';
-	    $month[11] = 'November';
-	    $month[12] = 'December';
-	    @endphp
-	    {{ Form::select('bulan',$month,'',['class'=>'form-control']) }}
+@if(Auth::user()->role == 'editor')
+	<div class="row">
+		<div class="col-lg-3 col-md-6">
+			<div class="panel panel-green">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-xs-12 text-center">
+							<div class="huge">{{ count($published_data) }}</div>
+							<div>Published</div>
+						</div>
+					</div>
+				</div>
+				<a href="#">
+					<div class="panel-footer">
+						<span class="pull-left">View Details</span>
+						<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+						<div class="clearfix"></div>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-6">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-xs-12 text-center">
+							<div class="huge">{{ count($waiting_data) }}</div>
+							<div>Waiting</div>
+						</div>
+					</div>
+				</div>
+				<a href="#">
+					<div class="panel-footer">
+						<span class="pull-left">View Details</span>
+						<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+						<div class="clearfix"></div>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-6">
+			<div class="panel panel-red">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-xs-12 text-center">
+							<div class="huge">{{ count($revising_data) }}</div>
+							<div>Revising</div>
+						</div>
+					</div>
+				</div>
+				<a href="#">
+					<div class="panel-footer">
+						<span class="pull-left">View Details</span>
+						<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+						<div class="clearfix"></div>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-6">
+			<div class="panel panel-yellow">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-xs-12 text-center">
+							<div class="huge">{{ count($pending_data) }}</div>
+							<div>Pending</div>
+						</div>
+					</div>
+				</div>
+				<a href="#">
+					<div class="panel-footer">
+						<span class="pull-left">View Details</span>
+						<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+						<div class="clearfix"></div>
+					</div>
+				</a>
+			</div>
+		</div>
 	</div>
-	<div class="col-md-3">
-		@php
-		$year[''] = 'Year';
-		@endphp
-	    @foreach ($years as $y)
-	    	@php
-	    	$year[$y->tahun] = $y->tahun;
-	    	@endphp
-	    @endforeach
-	    {{ Form::select('tahun',$year,'',['class'=>'form-control']) }}
+@else
+	<div class="row">
+		<div class="col-md-3 col-md-offset-6">
+		    @php
+		    $month[''] = 'Month';
+		    $month[1] = 'January';
+		    $month[2] = 'February';
+		    $month[3] = 'March';
+		    $month[4] = 'April';
+		    $month[5] = 'May';
+		    $month[6] = 'June';
+		    $month[7] = 'July';
+		    $month[8] = 'August';
+		    $month[9] = 'September';
+		    $month[10] = 'October';
+		    $month[11] = 'November';
+		    $month[12] = 'December';
+		    @endphp
+		    {{ Form::select('bulan',$month,'',['class'=>'form-control']) }}
+		</div>
+		<div class="col-md-3">
+			@php
+			$year[''] = 'Year';
+			@endphp
+		    @foreach ($years as $y)
+		    	@php
+		    	$year[$y->tahun] = $y->tahun;
+		    	@endphp
+		    @endforeach
+		    {{ Form::select('tahun',$year,'',['class'=>'form-control']) }}
+		</div>
 	</div>
-</div>
-<br>
-<div class="row">
-    <div class="col-md-12">
-    	<div id="postcharts" style="width:100%; height:400px;"></div>
-    </div>
-</div>
+	<br>
+	<div class="row">
+	    <div class="col-md-12">
+	    	<div id="postcharts" style="width:100%; height:400px;"></div>
+	    </div>
+	</div>
+@endif
 @endsection
 
+@if(Auth::user()->role != 'editor')
 @push('scripts')
 <script type="text/javascript">
 function changeYear(chart) {
@@ -146,3 +228,4 @@ $(document).ready(function() {
 });
 </script>
 @endpush
+@endif
