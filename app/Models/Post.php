@@ -22,16 +22,16 @@ class Post extends Model
 
     public function panel_count($status,$id) {
         return $this->where('status',$status)
-                ->whereHas('user', function($query) use($id) {
-                    $query->where('id',$id);
-                })->get();
+            ->whereHas('user', function($query) use($id) {
+                $query->where('id',$id);
+            })->get();
     }
 
     public function chart($status) {
         return $this->selectRaw('count(id) as jumlah,date(created_at) as tanggal')
-                ->where('status',$status)
-                ->groupBy('tanggal')
-                ->get();
+            ->where('status',$status)
+            ->groupBy('tanggal')
+            ->get();
     }
 
     public function chart_pertahun($status,$year) {

@@ -259,16 +259,16 @@ class PostController extends Controller
         return response()->json($post);
     }
 
-    public function getpost(Request $request)
+    public function getpost()
     {
         $id = Auth::user()->id;
         switch (Auth::user()->role) {
             case 'editor':
-                $posts = Post::with('category')->select('posts.*')->where('posts.user_id',$id)->latest();
+                $posts = Post::with('category')->where('user_id',$id)->latest();
                 break;
 
             default:
-                $posts = Post::with('category')->with('user')->select('posts.*')->latest();
+                $posts = Post::with('category')->with('user')->latest();
                 break;
         }
 

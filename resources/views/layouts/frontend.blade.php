@@ -66,13 +66,16 @@
     	</div>
     </div>
 
-    <!-- Footer
+    <div class="container-fluid" style="padding: 0;">
+        @include('layouts._subscribe')
+    </div>
+
+    <!-- Footer -->
     <footer class="py-5 bg-dark">
         <div class="container">
             <p class="m-0 text-center text-white"></p>
         </div>
     </footer>
-    -->
 
     <!-- jQuery -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>

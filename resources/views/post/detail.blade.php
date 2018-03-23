@@ -14,7 +14,9 @@
 	</p>
 	<hr>
 	<img class="img-fluid rounded img-responsive" src="{{ Storage::url($post->image) }}" alt="{{ $post->image }}">
-	{!! $post->content !!}
+	<hr>
+	<span class="lead">{!! $post->content !!}</span>
+	<hr>
 </div>
 
 @include('layouts._widget')
