@@ -1,8 +1,6 @@
 @extends('layouts.backend')
 
-@section('title')
-	Search
-@endsection
+@section('title','Search')
 
 @section('content')
 <div class="row">

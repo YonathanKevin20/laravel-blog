@@ -1,8 +1,6 @@
 @extends('layouts.backend')
 
-@section('title')
-	Post
-@endsection
+@section('title','Comment')
 
 @section('content')
 <div class="row">

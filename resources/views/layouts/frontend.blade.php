@@ -66,6 +66,8 @@
     	</div>
     </div>
 
+    @if(Request::segment(1) != 'login' && Request::segment(1) != 'register')
+    <!-- Subscribe -->
     <div class="container-fluid" style="padding: 0;">
         @include('layouts._subscribe')
     </div>
@@ -76,6 +78,7 @@
             <p class="m-0 text-center text-white"></p>
         </div>
     </footer>
+    @endif
 
     <!-- jQuery -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>

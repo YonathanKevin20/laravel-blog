@@ -1,8 +1,6 @@
 @extends('layouts.backend')
 
-@section('title')
-    Dashboard
-@endsection
+@section('title','Dashboard')
 
 @section('content')
 @if(Auth::user()->role == 'editor')

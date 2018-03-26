@@ -24,6 +24,9 @@
             <li>
                 <a href="{{ route('comment.index') }}"><i class="fa fa-comment fa-fw"></i> Comment</a>
             </li>
+            <li>
+                <a href="{{ route('subscriber.index') }}"><i class="fa fa-users fa-fw"></i> Subscriber</a>
+            </li>
             @elseif(Auth::user()->role == 'chief')
             <li>
                 <a href="{{ route('home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>

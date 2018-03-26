@@ -21,6 +21,8 @@ Route::get('/','PostController@paginate')->name('post.paginate');
 Route::get('detail/{id}','PostController@detail')->name('post.detail');
 Route::get('category/{id}','CategoryController@percategory')->name('category.per');
 
+Route::resource('subscriber','SubscriberController');
+
 Auth::routes();
 
 Route::group(['prefix'=>'back','middleware'=>'auth'],function() {
@@ -45,6 +47,7 @@ Route::group(['prefix'=>'back','middleware'=>'auth'],function() {
 	Route::get('getpost','PostController@getpost')->name('data.post');
 	Route::get('getcategory','CategoryController@getcategory')->name('data.category');
 	Route::get('getcomment','CommentController@getcomment')->name('data.comment');
+	Route::get('getsubscriber','SubscriberController@getsubscriber')->name('data.subscriber');
 
 	Route::get('export/excel','ExportController@post_excel')->name('export.excel');
 	Route::get('export/pdf','ExportController@post_pdf')->name('export.pdf');

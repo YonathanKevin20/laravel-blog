@@ -1,8 +1,6 @@
 @extends('layouts.backend')
 
-@section('title')
-	Category
-@endsection
+@section('title','Category')
 
 @section('content')
 <div class="row">
