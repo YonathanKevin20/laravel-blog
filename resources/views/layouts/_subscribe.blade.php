@@ -3,7 +3,7 @@
 	<form action="{{ route('subscriber.store') }}" method="POST">
 		@csrf
 		<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-			<input type="email" name="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+			<input type="email" name="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" value="{{ old('email') }}">
 			@if($errors->has('email'))
 				<p class="help-block">{{ $errors->first('email') }}</p>
 			@endif

@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title','Category')
+@section('title','Subscriber')
 
 @section('content')
 <div class="row">
@@ -12,13 +12,13 @@
 				<div class="panel-title">Create</div>
 			</div>
 			<div class="panel-body">
-				<form action="{{ route('category.store') }}" method="POST">
+				<form action="{{ route('subscriber.store') }}" method="POST">
 					@csrf
-					<div class="form-group has-feedback {{ $errors->has('name') ? 'has-error' : '' }}">
-						<label>Name</label>
-						<input type="text" name="name" class="form-control" value="{{ old('name') }}">
-						@if($errors->has('name'))
-							<p class="help-block">{{ $errors->first('name') }}</p>
+					<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+						<label>Email</label>
+						<input type="email" name="email" class="form-control" value="{{ old('email') }}">
+						@if($errors->has('email'))
+							<p class="help-block">{{ $errors->first('email') }}</p>
 						@endif
 					</div>
 					<input type="submit" value="Save" class="btn btn-primary">

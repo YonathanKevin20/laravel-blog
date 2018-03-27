@@ -42,7 +42,7 @@
 	        {data: 'DT_Row_Index', orderable: false, searchable: false},
 	        {data: 'name', name: 'name'},
 	        {data: 'id', render: function(data, type, row, meta) {
-	        	return '<form action="{{ url('back/category').'/' }}'+row.id+'" method="POST" onsubmit="return ConfirmDelete()"><a href="{{ url('back/post').'/' }}'+row.id+'/edit" class="btn btn-xs btn-warning">Edit</a><input type="hidden" name="_method" value="DELETE">{{csrf_field() }} <button type="submit" class="btn btn-xs btn-danger">Delete</button></form>';
+	        	return '<form action="{{ url('back/category').'/' }}'+row.id+'" method="POST" onsubmit="return ConfirmDelete()"><a href="{{ url('back/category').'/' }}'+row.id+'/edit" class="btn btn-xs btn-warning">Edit</a><input type="hidden" name="_method" value="DELETE">{{csrf_field() }} <button type="submit" class="btn btn-xs btn-danger">Delete</button></form>';
 	        }, orderable: false, searchable: false}
 	    ]
     });

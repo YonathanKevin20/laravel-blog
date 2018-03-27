@@ -21,7 +21,7 @@ Route::get('/','PostController@paginate')->name('post.paginate');
 Route::get('detail/{id}','PostController@detail')->name('post.detail');
 Route::get('category/{id}','CategoryController@percategory')->name('category.per');
 
-Route::resource('subscriber','SubscriberController');
+Route::resource('back/subscriber','SubscriberController');
 
 Auth::routes();
 

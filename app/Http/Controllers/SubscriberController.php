@@ -8,6 +8,12 @@ use DataTables;
 
 class SubscriberController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth',['except'=>['store']]);
+        $this->middleware('leader',['except'=>['store']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +31,7 @@ class SubscriberController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -37,12 +43,15 @@ class SubscriberController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required'
+            'email' => 'required|string|email|unique:subscribers',
         ]);
 
-        Subscriber::create($request->all());
+        Subscriber::create([
+            'email'=>$request->email,
+            'status'=>'on'
+        ]);
 
-        return redirect()->route('post.paginate');
+        return back();
     }
 
     /**
@@ -64,7 +73,9 @@ class SubscriberController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subscriber = Subscriber::findOrFail($id);
+
+        return view('subscriber.edit',compact('subscriber'));
     }
 
     /**
@@ -76,7 +87,17 @@ class SubscriberController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'email' => 'required|string|email',
+        ]);
+
+        $subscriber = Subscriber::findOrFail($id);
+        $subscriber->update([
+            'email'=>$request->email,
+            'status'=>($request->status == 'on') ? 'on' : 'off'
+        ]);
+
+        return redirect()->route('subscriber.index');
     }
 
     /**
@@ -87,7 +108,9 @@ class SubscriberController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Subscriber::findOrFail($id)->delete();
+
+        return redirect()->route('subscriber.index');
     }
 
     public function getsubscriber()

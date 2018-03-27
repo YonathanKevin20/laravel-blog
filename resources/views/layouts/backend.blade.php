@@ -18,6 +18,9 @@
     <!-- MetisMenu CSS -->
     <link href="{{ asset('css/metisMenu.min.css') }}" rel="stylesheet">
 
+    <!-- Bootstrap Toggle CSS -->
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet">
 
@@ -122,6 +125,9 @@
 
     <!-- Highcharts -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
+
+    <!-- Bootstrap Toggle -->
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('js/sb-admin-2.js') }}"></script>

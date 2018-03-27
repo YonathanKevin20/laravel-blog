@@ -15,7 +15,7 @@
 				<form action="{{ route('category.update',$category->id) }}" method="POST">
 					@csrf
 					@method('PATCH')
-					<div class="form-group has-feedback {{ $errors->has('nometer') ? 'has-error' : '' }}">
+					<div class="form-group has-feedback {{ $errors->has('name') ? 'has-error' : '' }}">
 						<label>Name</label>
 						<input type="text" name="name" class="form-control" value="{{ $category->name }}">
 						@if($errors->has('name'))
