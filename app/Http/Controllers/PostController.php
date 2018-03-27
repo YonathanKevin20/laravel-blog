@@ -124,7 +124,7 @@ class PostController extends Controller
             'image' => $path
         ]);
 
-        return redirect()->route('post.index');
+        return redirect()->route('post.index')->with(['success'=>'Success']);
     }
 
     /**
@@ -204,7 +204,7 @@ class PostController extends Controller
             ]);
         }
 
-        return redirect()->route('post.index');
+        return redirect()->route('post.index')->with(['warning'=>'Updated']);
     }
 
     /**
@@ -219,7 +219,7 @@ class PostController extends Controller
         Storage::delete($post->image);
         $post->delete();
 
-        return redirect()->route('post.index');
+        return redirect()->route('post.index')->with(['danger'=>'Deleted']);
     }
 
     public function verification(Request $request, $id)

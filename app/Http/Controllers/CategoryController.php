@@ -54,7 +54,7 @@ class CategoryController extends Controller
 
         Category::create($request->all());
 
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with(['success'=>'Success']);
     }
 
     /**
@@ -97,7 +97,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->update($request->all());
 
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with(['warning'=>'Updated']);
     }
 
     /**
@@ -110,7 +110,7 @@ class CategoryController extends Controller
     {
         Category::findOrFail($id)->delete();
 
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with(['danger'=>'Deleted']);
     }
 
     public function getcategory()

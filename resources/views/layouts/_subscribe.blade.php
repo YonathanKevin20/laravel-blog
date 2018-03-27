@@ -2,10 +2,10 @@
 	<h1 class="display-4 text-center">Subscribe</h1>
 	<form action="{{ route('subscriber.store') }}" method="POST">
 		@csrf
-		<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-			<input type="email" name="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" value="{{ old('email') }}">
+		<div class="form-group">
+			<input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" aria-describedby="emailHelp" placeholder="Enter email" value="{{ old('email') }}">
 			@if($errors->has('email'))
-				<p class="help-block">{{ $errors->first('email') }}</p>
+				<p class="invalid-feedback">{{ $errors->first('email') }}</p>
 			@endif
 			<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 		</div>

@@ -61,6 +61,14 @@
 
     <!-- Page Content -->
     <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            <br>
+                @include('layouts._alert')
+            </div>
+        </div>
+    </div>
+    <div class="container">
     	<div class="row">
             @yield('content')
     	</div>

@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="col-md-8">
-	<br>
 	@if(count($posts))
 		@php
 		if(Request::segment(2) != '') {

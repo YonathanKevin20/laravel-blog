@@ -51,7 +51,7 @@ class SubscriberController extends Controller
             'status'=>'on'
         ]);
 
-        return back();
+        return back()->with(['success'=>'Success']);
     }
 
     /**
@@ -97,7 +97,7 @@ class SubscriberController extends Controller
             'status'=>($request->status == 'on') ? 'on' : 'off'
         ]);
 
-        return redirect()->route('subscriber.index');
+        return redirect()->route('subscriber.index')->with(['warning'=>'Updated']);
     }
 
     /**
@@ -110,7 +110,7 @@ class SubscriberController extends Controller
     {
         Subscriber::findOrFail($id)->delete();
 
-        return redirect()->route('subscriber.index');
+        return redirect()->route('subscriber.index')->with(['danger'=>'Deleted']);
     }
 
     public function getsubscriber()
