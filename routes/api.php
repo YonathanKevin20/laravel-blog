@@ -20,3 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResources([
 	'post'=>'Api\PostController',
 ]);
+
+Route::group(['prefix'=>'category'], function() {
+	Route::get('index','Api\CategoryController@index');
+	Route::get('show/{id}','Api\CategoryController@show');
+	Route::post('store','Api\CategoryController@store');
+	Route::post('update/{id}','Api\CategoryController@update');
+	Route::post('destroy/{id}','Api\CategoryController@destroy');
+});

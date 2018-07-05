@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name','blog') }} | @yield('title')</title>
 
@@ -37,7 +38,7 @@
 
 <body>
 
-    <div id="wrapper">
+    <div id="app">
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -99,6 +100,9 @@
     </div>
     <!-- /#wrapper -->
 
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    
     <!-- jQuery -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
 

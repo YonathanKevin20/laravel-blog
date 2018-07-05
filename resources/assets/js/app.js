@@ -8,7 +8,39 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import VueRouter from 'vue-router';
 
+window.Vue.use(VueRouter);
+
+import CategoryIndex from './components/category/CategoryIndex.vue';
+import CategoryCreate from './components/category/CategoryCreate.vue';
+import CategoryEdit from './components/category/CategoryEdit.vue';
+
+const routes = [
+    {
+        path: '',
+        components: {
+            categoryIndex: CategoryIndex
+        },
+        name: 'indexCategory',
+    },
+    {
+        path: 'create',
+        component: CategoryCreate,
+        name: 'createCategory',
+    },
+    {
+        path: 'edit/:id',
+        component: CategoryEdit,
+        name: 'editCategory',
+    }
+]
+
+const router = new VueRouter({
+    routes 
+})
+
+const app = new Vue({ router }).$mount('#app')
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -17,6 +49,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
+/*
 const app = new Vue({
     el: '#app',
     data: {
@@ -45,3 +78,4 @@ const app = new Vue({
     	}
     }
 });
+*/
