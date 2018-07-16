@@ -69,4 +69,11 @@ class CategoryController extends Controller
 
         return '';
     }
+
+    public function search(Request $request)
+    {
+        if(isset($request->search)) {
+            return Category::where('name','LIKE',"%$request->search%")->get();
+        }
+    }
 }

@@ -25,19 +25,19 @@ const routes = [
         name: 'indexCategory',
     },
     {
-        path: 'create',
+        path: '/create',
         component: CategoryCreate,
         name: 'createCategory',
     },
     {
-        path: 'edit/:id',
+        path: '/edit/:id',
         component: CategoryEdit,
         name: 'editCategory',
     }
 ]
 
 const router = new VueRouter({
-    routes 
+    routes
 })
 
 const app = new Vue({ router }).$mount('#app')

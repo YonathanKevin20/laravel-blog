@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="form-group">
-			<router-link :to="{name: 'indexCategory'}" class="btn btn-default">Back</router-link>
+			<router-link :to="{name: 'indexCategory'}" class="btn btn-link">&laquo;Back</router-link>
 		</div>
 
 		<form v-on:submit="saveForm()">
@@ -31,8 +31,8 @@
 				var newCategory = app.category;
 				axios.post('/api/category/store/', newCategory)
 					.then(function(resp) {
-						app.$router.push('/');
 						alert("Created");
+						app.$router.push({name: 'indexCategory'});
 					})
 					.catch(function(resp) {
 						console.log(resp);

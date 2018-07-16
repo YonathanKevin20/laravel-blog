@@ -27,4 +27,5 @@ Route::group(['prefix'=>'category'], function() {
 	Route::post('store','Api\CategoryController@store');
 	Route::post('update/{id}','Api\CategoryController@update');
 	Route::post('destroy/{id}','Api\CategoryController@destroy');
+	Route::post('search','Api\CategoryController@search');
 });

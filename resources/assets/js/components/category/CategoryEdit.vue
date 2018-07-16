@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="form-group">
-			<router-link :to="{name: 'indexCategory'}" class="btn btn-default">Back</router-link>
+			<router-link :to="{name: 'indexCategory'}" class="btn btn-link">&laquo;Back</router-link>
 		</div>
 
 		<form v-on:submit="updateForm()">
@@ -44,8 +44,8 @@
 				var newCategory = app.category;
 				axios.post('/api/category/update/'+app.categoryId, newCategory)
 					.then(function(resp) {
-						app.$router.replace('/');
 						alert("Updated");
+						app.$router.replace('/');
 					})
 					.catch(function(resp) {
 						console.log(resp);
